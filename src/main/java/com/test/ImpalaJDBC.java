@@ -27,12 +27,21 @@ public class ImpalaJDBC {
       e.printStackTrace();
       System.exit(1);
     }
-    System.setProperty("java.security.auth.login.config","gss-jaas.conf");
-    System.setProperty("sun.security.jgss.debug","true");
-    System.setProperty("javax.security.auth.useSubjectCredsOnly","false");
-    System.setProperty("java.security.krb5.conf","krb5.conf");
+      String jdbcUrl = args[0];
+      String krbCfg = "krb5.conf";
+      if (args.length > 1) {
+          krbCfg = args[1];
+      }
 
-    String jdbcUrl = args[0];
+      System.out.println("using " + krbCfg);
+      System.out.println("Connecting to " + jdbcUrl);
+
+
+      System.setProperty("java.security.auth.login.config","gss-jaas.conf");
+      System.setProperty("sun.security.jgss.debug","true");
+      System.setProperty("javax.security.auth.useSubjectCredsOnly","false");
+      System.setProperty("java.security.krb5.conf", krbCfg);
+
 
     Connection con = DriverManager.getConnection(jdbcUrl);
 
