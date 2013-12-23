@@ -16,7 +16,7 @@ public class ImpalaJDBC {
   public static void main(String[] args) throws SQLException {
       if (args.length == 0) {
           System.out.println("Usage: ImpalaJDBC <url>");
-          System.out.println("       (secure)   jdbc:hive2://impala-host:21050/;principal=user/test.com@TEST.COM");
+          System.out.println("       (secure)   jdbc:hive2://impala-host:21050/;principal=impala/test.com@TEST.COM");
           System.out.println("       (insecure) jdbc:hive2://impala-host:21050/;auth=noSasl");
           System.exit(1);
       }
